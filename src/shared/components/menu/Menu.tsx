@@ -1,13 +1,17 @@
-import { Avatar, AvatarGroup, Divider, Drawer, Icon, List, ListItemButton, ListItemIcon, ListItemText, ListSubheader, useTheme } from "@mui/material"
+import { Avatar, AvatarGroup, Divider, Drawer, Icon, List, ListItemButton, ListItemIcon, ListItemText, ListSubheader, useMediaQuery, useTheme } from "@mui/material"
 import { Box } from "@mui/system"
 import React from "react"
+import { useDrawerContext } from "../../contexts"
 
 export const Menu: React.FC = ({ children }) => {
     const theme = useTheme()
+    const sm = useMediaQuery(theme.breakpoints.down('sm')) //Se a tela for menor que sm = true
+
+    const { isDrawerOpen, toggleDrawerOpen } = useDrawerContext();
 
     return (
         <>
-            <Drawer variant="permanent" >
+            <Drawer open={isDrawerOpen} variant={sm ? "temporary" : "permanent"} onClose={toggleDrawerOpen}> 
                 <Box width={theme.spacing(28)} height="100%" display="flex" flexDirection="column">
                     <Box width="100%" height={theme.spacing(18)} display="flex" alignItems="center" justifyContent="flex-end">
                         <AvatarGroup max={3} >
@@ -32,7 +36,7 @@ export const Menu: React.FC = ({ children }) => {
                 </Box>
 
             </Drawer>
-            <Box height="100vh" marginLeft={theme.spacing(28)}>
+            <Box height="100vh" marginLeft={sm ? 0 : theme.spacing(28)}> 
                 {children}
             </Box>
 
