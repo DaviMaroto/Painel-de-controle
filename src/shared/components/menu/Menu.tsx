@@ -3,6 +3,15 @@ import { Box } from "@mui/system"
 import React from "react"
 import { useDrawerContext } from "../../contexts"
 
+
+interface itemLinkProps {
+    
+}
+//React.FC = Tipar componentes que retornam jsx
+const itemLink: React.FC <itemLinkProps> = ({}) =>{
+
+} 
+
 export const Menu: React.FC = ({ children }) => {
     const theme = useTheme()
     const sm = useMediaQuery(theme.breakpoints.down('sm')) //Se a tela for menor que sm = true
@@ -31,6 +40,7 @@ export const Menu: React.FC = ({ children }) => {
                             </ListItemIcon>
                             <ListItemText primary="Página Inicial" />
                         </ListItemButton>
+                        
                     </Box>
 
                 </Box>
